@@ -15,26 +15,34 @@ function addJSON() {
             name: $( this ).val()
         });
     });
-    $.ajax({
-        url: './user-rest/add',
-        type: "POST",
-        dataType: "json",
-        contentType: "application/json",
-        success: function(user){
+    fetch("./user-rest/add",
+        {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(sendData)
+        })
+        .then(function(res){ return res.json(); })
+        .then(function(user) {
             window.location.href = "./admin";
-        },
-        data: JSON.stringify(sendData)
-    })
+        });
 }
 
 $( document ).ready(function() {
-    $.ajax({url: "./user-rest/roles", success: function(roles){
+    fetch("./user-rest/roles",
+        {
+            method: "POST"
+        })
+        .then(function(res){ return res.json(); })
+        .then(function(roles) {
             roles.forEach(function(item, i) {
                 $('#roles').append(
                     $('<div>').addClass('form-check form-check-inline')
-                    .append($('<input>').prop('type', 'checkbox').addClass('form-check-input').val(item.name))
-                    .append($('<label>').text(item.name).addClass('form-check-label'))
+                        .append($('<input>').prop('type', 'checkbox').addClass('form-check-input').val(item.name))
+                        .append($('<label>').text(item.name).addClass('form-check-label'))
                 );
             });
-    }});
+        });
 });
