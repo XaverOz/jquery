@@ -1,0 +1,49 @@
+.sidebar {
+    width: 15%;
+    min-width: 100px;
+    background-color: white;
+    height: 100%;
+}
+.content {
+    height: 100%;
+}
+.base {
+    background-color: gainsboro;
+    height: 100%;
+}
+.activated {
+    background-color: blue;
+    height: 100%;
+    width: 100%;
+    color: white;
+}
+.activated:hover {
+    color: white;
+}
+.noactivated:hover {
+    background-color: gainsboro;
+    border: 0;
+}
+.navbar-brand {
+    color: gainsboro;
+}
+.navbar-brand:hover {
+    color: gainsboro;
+}
+.action-desc {
+
+    font-style: bold;
+}
+.table-striped {
+    background-color: white;
+}
+.table-striped td {
+    vertical-align: middle;
+}
+.modal-label {
+    align-self: center;
+}
+body, html {
+    height: 100%;
+    background-color: gainsboro;
+}
