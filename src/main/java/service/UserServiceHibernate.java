@@ -7,7 +7,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,21 +18,11 @@ import java.util.Set;
 @Component
 public class UserServiceHibernate implements UserService {
 
-    private Configuration configuration;
-
     private SessionFactory sessionFactory;
 
     @Autowired
-    public UserServiceHibernate(Configuration configuration) {
-        this.configuration = configuration;
-        sessionFactory = createSessionFactory();
-    }
-
-    private SessionFactory createSessionFactory() {
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
-        builder.applySettings(configuration.getProperties());
-        ServiceRegistry serviceRegistry = builder.build();
-        return configuration.buildSessionFactory(serviceRegistry);
+    public UserServiceHibernate(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     public Role getRoleByName(String name) {
